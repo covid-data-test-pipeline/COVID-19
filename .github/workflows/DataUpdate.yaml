@@ -1,7 +1,7 @@
 name: Data-Update
 on: 
   schedule:
-  - cron: "40 8 * * *"
+  - cron: "55 9 * * *"
 jobs:
   update-data:
     name: Update data from remote
@@ -17,6 +17,7 @@ jobs:
           git config --global user.name ${{github.actor}}
           git config --global user.email ${{github.actor}}@users.noreply.github.com
           git remote add upstream https://github.com/CSSEGISandData/COVID-19
+          git pull origin master
           git fetch upstream
           git branch
           git merge -X theirs upstream/master
@@ -31,6 +32,4 @@ jobs:
         run: |
           git add .
           git commit -m "Update data (auto)"
-          git config pull.rebase true
-          git pull origin master
           git push origin master 
