@@ -16,10 +16,9 @@ jobs:
         run: |
           git config --global user.name ${{github.actor}}
           git config --global user.email ${{github.actor}}@users.noreply.github.com
-          git remote add upstream https://github.com/CSSEGISandData/COVID-19
           git pull origin master
+          git remote add upstream https://github.com/CSSEGISandData/COVID-19
           git fetch upstream
-          git branch
           git merge -X theirs upstream/master
       - name: Setup python
         uses: actions/setup-python@v2
